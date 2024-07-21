@@ -13,6 +13,7 @@
 - [x]  基于![v2.3.1](https://github.com/cooderl/wewe-rss/blob/828453b9d4ade57de42bc905fe266ba685839527/README.md)
 - [x]  支持通过/feeds/filter.(json|rss|atom)接口和/feeds/feedid，使用title_include和title_exclude参数对标题进行过滤
 > {{ORIGIN_URL}}/feeds/filter.atom?title_include=张三
+> 
 > {{ORIGIN_URL}}/feeds/MP_WXS_123.json?limit=30&title_include=张三|李四|王五&title_exclude=张三丰|赵六
 - [x]  支持通过/feeds/feedid接口，使用update=true实时更新feedid（实时返回未更新的articles，获取更新后的articles需去掉update参数再请求一次）
 > {{ORIGIN_URL}}/feeds/MP_WXS_123.rss?update=true
