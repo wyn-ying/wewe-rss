@@ -15,6 +15,7 @@ RUN pnpm run -r build
 RUN pnpm deploy --filter=server --prod /app-sqlite
 
 RUN cd /app-sqlite && \
+    rm -rf ./prisma && \
     mv prisma-sqlite prisma && \
     pnpm exec prisma generate
 
