@@ -1,7 +1,7 @@
 <div align="center">
 <img src="https://raw.githubusercontent.com/cooderl/wewe-rss/main/assets/logo.png" width="80" alt="预览"/>
 
-<h1 align="center"><a href="https://github.com/cooderl/wewe-rss">WeWe RSS</a></h1>
+<h1 align="center"><a href="https://github.com/cooderl/wewe-rss">原版WeWe RSS</a></h1>
 
 更优雅的微信公众号订阅方式。
 
@@ -10,31 +10,17 @@
 </div>
 
 ## 功能
-
-- [x]  v2.x版本使用全新接口，更加稳定
-- [x]  支持微信公众号订阅（基于微信读书）
-- [x]  后台自动定时更新内容
-- [x]  微信公众号RSS生成（支持`.atom`\.`rss`\.`json`格式)
-- [x]  支持全文内容输出，让阅读无障碍
-- [x]  所有订阅源导出OPML
+- [x]  基于![v2.3.1](https://github.com/cooderl/wewe-rss/blob/828453b9d4ade57de42bc905fe266ba685839527/README.md)
+- [x]  支持通过/feeds/filter.(json|rss|atom)接口，使用title_include和title_exclude参数对标题进行过滤
+- [x]  支持通过/feeds/feedid接口，使用title_include和title_exclude参数对标题进行过滤，使用update=true实时更新feedid
 
 ## 部署
 
-### 一键部署（待完善添加模板）
-
-你可以通过以下平台一键部署，只需填写本项目的URL即可。
-
-[Zeabur](https://zeabur.com/) 
-
-[![Deploy on Zeabur](https://zeabur.com/button.svg)](https://zeabur.com/templates/DI9BBD)
-
-[Railway](https://railway.app/)
-
-[Hugging Face部署参考](https://github.com/cooderl/wewe-rss/issues/32)
-
 ### Docker Compose 部署
 
-可参考 [docker-compose.yml](https://github.com/cooderl/wewe-rss/blob/main/docker-compose.yml) 和 [docker-compose.sqlite.yml](https://github.com/cooderl/wewe-rss/blob/main/docker-compose.sqlite.yml)
+可参考 [docker-compose.sqlite.yml](https://github.com/cooderl/wewe-rss/blob/main/docker-compose.sqlite.yml)
+
+未测试 [docker-compose.yml](https://github.com/cooderl/wewe-rss/blob/main/docker-compose.yml)
 
 ### Docker 命令启动
 
@@ -47,48 +33,16 @@ docker run -d \
   -e DATABASE_TYPE=sqlite \
   -e AUTH_CODE=123567 \
   -v $(pwd)/data:/app/data \
-  cooderl/wewe-rss-sqlite:latest
+  wynying92/wewe-rss-sqlite:latest
 ```
 
 #### Mysql
 
-1. 创建docker网络
-
-```sh
-docker network create wewe-rss
-```
-
-2. 启动 MySQL 数据库
-
-```sh
-docker run -d \
-  --name db \
-  -e MYSQL_ROOT_PASSWORD=123456 \
-  -e TZ='Asia/Shanghai' \
-  -e MYSQL_DATABASE='wewe-rss' \
-  -v db_data:/var/lib/mysql \
-  --network wewe-rss \
-  mysql:8.3.0 --mysql-native-password=ON
-```
-
-3. 启动 Server
-
-```sh
-docker run -d \
-  --name wewe-rss \
-  -p 4000:4000 \
-  -e DATABASE_URL='mysql://root:123456@db:3306/wewe-rss?schema=public&connect_timeout=30&pool_timeout=30&socket_timeout=30' \
-  -e AUTH_CODE=123567 \
-  --network wewe-rss \
-  cooderl/wewe-rss:latest
-
-```
-
-[Nginx配置参考](https://raw.githubusercontent.com/cooderl/wewe-rss/main/assets/nginx.example.conf)
+与原版相比，不支持Mysql方式
 
 ### 本地部署
 
-如果你想本地部署，请使用 `pnpm install &&  pnpm run -r build && pnpm run start:server` 命令(可以配合 pm2 来守护进程，防止被杀死)。
+未测试本地部署
 
 ## 环境变量
 

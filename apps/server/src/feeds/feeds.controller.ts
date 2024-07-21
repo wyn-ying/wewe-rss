@@ -71,14 +71,24 @@ export class FeedsController {
     @Param('feed') feed: string,
     @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number = 10,
     @Query('mode') mode: string,
+    @Query('title_include') title_include: string,
+    @Query('title_exclude') title_exclude: string,
+    @Query('update') update: boolean = false,
   ) {
     const [id, type] = feed.split('.');
     this.logger.log('getFeed: ', id);
+
+    if(update) {
+      this.feedsService.updateFeed(id);
+    }
+
     const { content, mimeType } = await this.feedsService.handleGenerateFeed({
       id,
       type,
       limit,
       mode,
+      title_include,
+      title_exclude,
     });
 
     res.setHeader('Content-Type', mimeType);
