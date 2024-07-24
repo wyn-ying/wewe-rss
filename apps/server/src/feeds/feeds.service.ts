@@ -12,12 +12,6 @@ import { load } from 'cheerio';
 import { minify } from 'html-minifier';
 import { LRUCache } from 'lru-cache';
 import pMap from '@cjs-exporter/p-map';
-import dayjs from 'dayjs';
-import timezone from 'dayjs/plugin/timezone';
-import utc from 'dayjs/plugin/utc';
-
-dayjs.extend(utc);
-dayjs.extend(timezone);
 
 console.log('CRON_EXPRESSION: ', process.env.CRON_EXPRESSION);
 
@@ -192,10 +186,7 @@ export class FeedsService {
       const link = `https://mp.weixin.qq.com/s/${id}`;
 
       const mpName = feeds.find((item) => item.id === mpId)?.mpName || '-';
-      const { tz } = this.configService.get<ConfigurationType['timezone']>('timezone')!;
-      const published = tz
-        ? dayjs.tz(new Date(publishTime * 1e3), tz).toDate()
-        : new Date(publishTime * 1e3);
+      const published = new Date(publishTime * 1e3);
 
       let description = '';
       if (enableFullText) {

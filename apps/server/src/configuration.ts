@@ -14,7 +14,6 @@ const configuration = () => {
   const feedMode = process.env.FEED_MODE as 'fulltext' | '';
 
   const databaseType = process.env.DATABASE_TYPE || 'mysql';
-  const tz = process.env.TZ;
 
   return {
     server: { isProd, port, host },
@@ -27,9 +26,6 @@ const configuration = () => {
     },
     database: {
       type: databaseType,
-    },
-    timezone: {
-      tz: tz,
     },
   };
 };
