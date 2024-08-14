@@ -10,9 +10,19 @@
 </div>
 
 ## 功能
-- [x]  基于![v2.3.1](https://github.com/cooderl/wewe-rss/blob/828453b9d4ade57de42bc905fe266ba685839527/README.md)
-- [x]  支持通过/feeds/filter.(json|rss|atom)接口，使用title_include和title_exclude参数对标题进行过滤
-- [x]  支持通过/feeds/feedid接口，使用title_include和title_exclude参数对标题进行过滤，使用update=true实时更新feedid
+
+- [x]  v2.x版本使用全新接口，更加稳定
+- [x]  支持微信公众号订阅（基于微信读书）
+- [x]  后台自动定时更新内容
+- [x]  微信公众号RSS生成（支持`.atom`\.`rss`\.`json`格式)
+- [x]  支持全文内容输出，让阅读无障碍
+- [x]  所有订阅源导出OPML
+- [x]  支持通过/feeds/all.(json|rss|atom)接口和/feeds/:feed对标题进行过滤：使用title_include和title_exclude参数，支持使用`|`实现多个关键词的 或 逻辑
+> {{ORIGIN_URL}}/feeds/all.atom?title_include=张三
+> 
+> {{ORIGIN_URL}}/feeds/MP_WXS_123.json?limit=30&title_include=张三|李四|王五&title_exclude=张三丰|赵六
+- [x]  支持通过/feeds/:feed接口触发单个feedid更新：使用update=true参数（实时返回结果不包含更新后的articles，要获取更新后的articles需去掉update参数再请求一次）
+> {{ORIGIN_URL}}/feeds/MP_WXS_123.rss?update=true
 
 ## 部署
 

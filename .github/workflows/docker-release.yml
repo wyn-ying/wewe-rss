@@ -1,4 +1,4 @@
-name: Build WeWeRSS images and push image to docker hub
+name: Build WeWeRSS images and push image to docker hub 
 on:
   workflow_dispatch:
   push:
@@ -29,7 +29,7 @@ jobs:
 
   release-images:
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 120 
     permissions:
       packages: write
       contents: read
