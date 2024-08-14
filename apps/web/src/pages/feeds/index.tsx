@@ -61,6 +61,7 @@ const Feeds = () => {
 
   const handleConfirm = async () => {
     // TODO show operation in progress
+    console.warn('输入的wxslink: ', wxsLink.split('\n'))
     const res = await getMpInfo({ wxsLink: wxsLink });
     if (res[0]) {
       const item = res[0];
